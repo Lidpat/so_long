@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 
-SRCS	=	so_long.c
+SRCS	=	so_long.c check_args.c
 
 OBJDIR	=  bin
 OBJS	= ${SRCS:%.c=${OBJDIR}/%.o}

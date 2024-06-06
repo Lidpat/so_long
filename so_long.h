@@ -14,7 +14,12 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # include "lib/gnl/get_next_line.h"
+# include "lib/ft/libft.h"
+# include <fcntl.h>
 
+# include <stdio.h>   ///BORRAR!!!!
 
+char    **check_args(char *argv);
+void    error_out(int n);
 
 #endif

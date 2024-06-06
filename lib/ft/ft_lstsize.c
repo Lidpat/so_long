@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpalacio <lpalacio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/02 18:35:07 by lpalacio          #+#    #+#             */
-/*   Updated: 2024/06/04 21:08:04 by lpalacio         ###   ########.fr       */
+/*   Created: 2022/10/09 00:25:59 by lpalacio          #+#    #+#             */
+/*   Updated: 2022/10/09 00:41:57 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-#include <stdio.h>
-
-int	main(int argc, char **argv)
+int	ft_lstsize(t_list *lst)
 {
-		if (argc == 2)
+	int	n;
+
+	n = 0;
+	if (lst != NULL)
 	{
-		check_args(argv[1]);
+		n = 1;
+		while (lst->next != NULL)
+		{
+			lst = lst->next;
+			n++;
+		}
 	}
-	else
-		error_out(2);
-	return (0);
+	return (n);
 }

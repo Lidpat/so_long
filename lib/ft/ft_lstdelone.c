@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpalacio <lpalacio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/02 18:35:07 by lpalacio          #+#    #+#             */
-/*   Updated: 2024/06/04 21:08:04 by lpalacio         ###   ########.fr       */
+/*   Created: 2022/10/10 19:59:43 by lpalacio          #+#    #+#             */
+/*   Updated: 2022/10/10 22:01:59 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-#include <stdio.h>
-
-int	main(int argc, char **argv)
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-		if (argc == 2)
+	if (lst != NULL && del != NULL)
 	{
-		check_args(argv[1]);
+		del(lst->content);
+		free(lst);
 	}
-	else
-		error_out(2);
-	return (0);
 }

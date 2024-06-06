@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpalacio <lpalacio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/02 18:35:07 by lpalacio          #+#    #+#             */
-/*   Updated: 2024/06/04 21:08:04 by lpalacio         ###   ########.fr       */
+/*   Created: 2022/10/06 13:19:35 by lpalacio          #+#    #+#             */
+/*   Updated: 2022/10/08 20:30:03 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-#include <stdio.h>
-
-int	main(int argc, char **argv)
+t_list	*ft_lstnew(void *content)
 {
-		if (argc == 2)
-	{
-		check_args(argv[1]);
-	}
+	t_list	*lst;
+
+	lst = malloc(sizeof(t_list));
+	if (lst == NULL)
+		return (NULL);
+	if (content == NULL)
+		lst->content = NULL;
 	else
-		error_out(2);
-	return (0);
+		lst->content = content;
+	lst->next = NULL;
+	return (lst);
 }

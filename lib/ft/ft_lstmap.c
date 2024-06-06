@@ -1,24 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/02 21:58:58 by lpalacio          #+#    #+#             */
-/*   Updated: 2022/10/02 21:59:54 by lpalacio         ###   ########.fr       */
+/*   Created: 2022/10/11 20:08:41 by lpalacio          #+#    #+#             */
+/*   Updated: 2022/10/14 00:37:45 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* proteger !!! */
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	size_t	n;
+	t_list	*new;
+	t_list	*aux;
+	t_list	*node;
 
-	n = 0;
-	while (s[n] != 0)
-		n ++;
-	return (n);
+	if (lst == NULL || f == NULL)
+		return (NULL);
+	aux = lst;
+	new = ft_lstnew(f(aux->content));
+	aux = aux->next;
+	while (aux != NULL)
+	{
+		node = ft_lstnew(f(aux->content));
+		if (node == NULL)
+		{
+			ft_lstclear(&new, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&new, node);
+		aux = aux->next;
+	}	
+	return (new);
 }

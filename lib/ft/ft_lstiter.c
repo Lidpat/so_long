@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpalacio <lpalacio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/02 18:35:07 by lpalacio          #+#    #+#             */
-/*   Updated: 2024/06/04 21:08:04 by lpalacio         ###   ########.fr       */
+/*   Created: 2022/10/11 19:41:29 by lpalacio          #+#    #+#             */
+/*   Updated: 2022/10/11 20:03:30 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-#include <stdio.h>
-
-int	main(int argc, char **argv)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-		if (argc == 2)
+	t_list	*aux;
+
+	aux = lst;
+	if (f != NULL)
 	{
-		check_args(argv[1]);
+		while (aux != NULL)
+		{
+			f(aux->content);
+			aux = aux->next;
+		}
 	}
-	else
-		error_out(2);
-	return (0);
 }

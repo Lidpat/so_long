@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpalacio <lpalacio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/02 18:35:07 by lpalacio          #+#    #+#             */
-/*   Updated: 2024/06/04 21:08:04 by lpalacio         ###   ########.fr       */
+/*   Created: 2022/10/09 21:40:23 by lpalacio          #+#    #+#             */
+/*   Updated: 2022/10/09 23:19:20 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-#include <stdio.h>
-
-int	main(int argc, char **argv)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-		if (argc == 2)
+	t_list	*aux;
+
+	aux = *lst;
+	if (*lst == NULL)
+		*lst = new;
+	else if (lst != NULL)
 	{
-		check_args(argv[1]);
+		while (aux->next != NULL)
+			aux = aux->next;
+		aux->next = new;
 	}
-	else
-		error_out(2);
-	return (0);
 }
