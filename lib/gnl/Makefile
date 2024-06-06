@@ -24,7 +24,7 @@ bin/%.o : %.c
 		@$(CC) ${CFLAGS} -c $< -o $@
 
 ${NAME}: $(OBJS)
-	@ar crus ${NAME} ${OBJS}
+	@ar crs ${NAME} ${OBJS}
 
 $(OBJS): | $(OBJDIR)
 

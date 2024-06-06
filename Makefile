@@ -18,12 +18,16 @@ OBJS	= ${SRCS:%.c=${OBJDIR}/%.o}
 
 NAME = so_long
 LIBDIR = lib
+GNLLIB_DIR = ${LIBDIR}/gnl
+LIBGNL = ${GNLLIB_DIR}/libgnl.a
+LIBFT_DIR = ${LIBDIR}/ft
+LIBFT = ${LIBFT_DIR}/libft.a
+
 RM = rm -rf
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
-GNLLIBDIR = ${LIBDIR}/gnl
-CLIBGNL = -L ${GNLLIBDIR} -lgnl
-LIBGNL = libgnl.a
+CLIBGNL = -L ${GNLLIB_DIR} -lgnl
+CLIBFT = -L ${LIBFT_DIR} -lft
 
 
 all: $(NAME)
@@ -32,20 +36,25 @@ bin/%.o : %.c
 	@mkdir -p ${OBJDIR}
 	@${CC} ${CFLAGS} -c $< -o $@
 
-$(NAME): $(OBJS) | $(LIBGNL)
-	@$(CC) -o $(NAME) $(OBJS) $(CLIBGNL) $(CFLAGS)
+$(NAME): $(OBJS) | $(LIBGNL) $(LIBFT)
+	@$(CC) -o $(NAME) $(OBJS) $(CLIBGNL) $(CLIBFT) $(CFLAGS)
 	@echo "so_long has been compiled"
 
 $(LIBGNL):
-	@$(MAKE) -C $(GNLLIBDIR)
+	@$(MAKE) -C $(GNLLIB_DIR)
+
+$(LIBFT):
+	@$(MAKE) -C $(LIBFT_DIR)
 
 clean:
 	@$(RM) ${OBJS} ${OBJDIR}
-	@$(MAKE) -C ${GNLLIBDIR} clean
+	@$(MAKE) -C ${GNLLIB_DIR} clean
+	@$(MAKE) -C ${LIBFT_DIR} clean
 
 fclean: clean
 	@${RM} ${NAME}
-	@$(MAKE) -C ${GNLLIBDIR} fclean
+	@$(MAKE) -C ${GNLLIB_DIR} fclean
+	@$(MAKE) -C ${LIBFT_DIR} fclean
 
 re: fclean all
 
